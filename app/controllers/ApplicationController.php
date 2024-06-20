@@ -8,3 +8,5 @@ class ApplicationController extends Controller
 {
 	
 }
+
+?>

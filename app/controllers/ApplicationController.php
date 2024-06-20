@@ -6,5 +6,9 @@
  */
 class ApplicationController extends Controller 
 {
+    public function indexAction()
+    {
+        
+    }
 	
 }

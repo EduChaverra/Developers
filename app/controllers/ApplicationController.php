@@ -12,3 +12,5 @@ class ApplicationController extends Controller
     }
 	
 }
+
+?>

@@ -11,13 +11,19 @@ class TareaController extends Controller
         $this->tareaModel = new Tarea();
     }
 
-    public function index()
+    public function indexAction()
     {
+        //$tareas = $this->tareaModel->createTarea("Tarea1", "Descripción1", "acabado", '2003-12-31 12:00:00', '2003-12-31 12:00:00', 1);
+        //$tareas = $this->tareaModel->createTarea("Tarea2", "Descripción2", "empezado", '2003-12-31 12:00:00', '2003-12-31 12:00:00', 2);
         $tareas = $this->tareaModel->getAllTareas();
-        include 'views/tareas/index.php';
+        print_r($this->tareaModel->getTareaById(1));
+        $this->view->__set("tareas", $tareas);
+        //print_r( $this->tareaModel->getTareaById(1));
+        //print_r( $this->tareaModel->getTareaById(2));
+        //include '../views/scripts/tarea/index.phtml';
     }
 
-    public function crear()
+    public function crearAction()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $titulo = $_POST['titulo'];
@@ -27,13 +33,13 @@ class TareaController extends Controller
             $hora_fin = $_POST['hora_fin'];
             $usuario = $_POST['usuario'];
             $this->tareaModel->createTarea($titulo, $descripcion, $estado, $hora_inicio, $hora_fin, $usuario);
-            header('Location: index.php');
+            header('Location: index.phtml');
         } else {
-            include 'views/tareas/crear.php';
+            include 'views/scripts/tarea/crear.phtml';
         }
     }
 
-    public function editar($id)
+    public function editarAction($id)
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $titulo = $_POST['titulo'];
@@ -43,20 +49,20 @@ class TareaController extends Controller
             $hora_fin = $_POST['hora_fin'];
             $usuario = $_POST['usuario'];
             $this->tareaModel->updateTarea($id, $titulo, $descripcion, $estado, $hora_inicio, $hora_fin, $usuario);
-            header('Location: index.php');
+            header('Location: index.phtml');
         } else {
             $tarea = $this->tareaModel->getTareaById($id);
-            include 'views/tareas/editar.php';
+            include 'views/scripts/tarea/editar.phtml';
         }
     }
 
-    public function mostrar($id)
+    public function mostrarAction($id)
     {
         $tarea = $this->tareaModel->getTareaById($id);
-        include 'views/tareas/mostrar.php';
+        include 'views/scripts/tarea/mostrar.php';
     }
 
-    public function borrar($id)
+    public function borrarAction($id)
     {
         $this->tareaModel->deleteTarea($id);
         header('Location: index.php');

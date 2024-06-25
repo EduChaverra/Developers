@@ -6,7 +6,7 @@
  */
 class ApplicationController extends Controller 
 {
-   
+
 }
 
 ?>

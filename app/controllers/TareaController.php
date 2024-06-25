@@ -20,7 +20,7 @@ class TareaController extends Controller
         $this->view->__set("tareas", $tareas);
         //print_r( $this->tareaModel->getTareaById(1));
         //print_r( $this->tareaModel->getTareaById(2));
-        //include '../views/scripts/tarea/index.phtml';
+        include 'scripts/tarea/index.phtml';
     }
 
     public function crearAction()
@@ -35,7 +35,7 @@ class TareaController extends Controller
             $this->tareaModel->createTarea($titulo, $descripcion, $estado, $hora_inicio, $hora_fin, $usuario);
             header('Location: index.phtml');
         } else {
-            include 'views/scripts/tarea/crear.phtml';
+            //include 'views/scripts/tarea/crear.phtml';
         }
     }
 

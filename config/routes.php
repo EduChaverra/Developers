@@ -10,6 +10,6 @@
  * '/calendar' => 'calendar#index'
  */
 $routes = array(
-    '/' => 'tarea#index'
-    //'./' => 'tarea#crear'
+    '/' => 'tarea#index',
+    '/crear' => 'tarea#crear'
 );

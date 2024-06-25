@@ -2,10 +2,23 @@
 <h1>Tareas</h1>
 
 <?php
-//require_once('/../controllers/TareaController.php');
+require_once('../app/controllers/TareaController.php');
 for($i = 0; $i < 3; $i++)
 {
   echo "<p>Hola $i</p>";
-}?>
-$__get("tareas");
+}
+print_r($this->tareas);
+//print_r($this->tareas->id[1]);
+
+foreach($this->tareas as $tarea){
+  echo $tarea['titulo'];
+}
+?>
+
+<form>
+  <input type="submit" value="Crear">
+</form>
+
+
+
 

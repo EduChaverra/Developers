@@ -16,11 +16,9 @@ class TareaController extends Controller
         //$tareas = $this->tareaModel->createTarea("Tarea1", "Descripción1", "acabado", '2003-12-31 12:00:00', '2003-12-31 12:00:00', 1);
         //$tareas = $this->tareaModel->createTarea("Tarea2", "Descripción2", "empezado", '2003-12-31 12:00:00', '2003-12-31 12:00:00', 2);
         $tareas = $this->tareaModel->getAllTareas();
-        print_r($this->tareaModel->getTareaById(1));
+        //print_r($this->tareaModel->getTareaById(1));
+        $this->crearAction();
         $this->view->__set("tareas", $tareas);
-        //print_r( $this->tareaModel->getTareaById(1));
-        //print_r( $this->tareaModel->getTareaById(2));
-        include 'scripts/tarea/index.phtml';
     }
 
     public function crearAction()

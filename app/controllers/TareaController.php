@@ -17,11 +17,11 @@ class TareaController extends Controller
         //$tareas = $this->tareaModel->createTarea("Tarea2", "Descripción2", "empezado", '2003-12-31 12:00:00', '2003-12-31 12:00:00', 2);
         $tareas = $this->tareaModel->getAllTareas();
         //print_r($this->tareaModel->getTareaById(1));
-        $this->crearAction();
+        //$this->crearAction();
         $this->view->__set("tareas", $tareas);
     }
 
-    public function crearAction()
+    public function createAction()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $titulo = $_POST['titulo'];
@@ -37,7 +37,13 @@ class TareaController extends Controller
         }
     }
 
-    public function editarAction($id)
+    public function readAction($id)
+    {
+        $tarea = $this->tareaModel->getTareaById($id);
+        include 'views/scripts/tarea/mostrar.php';
+    }
+
+    public function updateAction($id)
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $titulo = $_POST['titulo'];
@@ -54,13 +60,9 @@ class TareaController extends Controller
         }
     }
 
-    public function mostrarAction($id)
-    {
-        $tarea = $this->tareaModel->getTareaById($id);
-        include 'views/scripts/tarea/mostrar.php';
-    }
+    
 
-    public function borrarAction($id)
+    public function deleteAction($id)
     {
         $this->tareaModel->deleteTarea($id);
         header('Location: index.php');

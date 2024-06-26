@@ -2,23 +2,22 @@
 <h1>Tareas</h1>
 
 <?php
-require_once('../app/controllers/TareaController.php');
+//require_once('../app/controllers/TareaController.php');
 for($i = 0; $i < 3; $i++)
 {
   echo "<p>Hola $i</p>";
 }
 print_r($this->tareas);
 //print_r($this->tareas->id[1]);
-
+$tareaGuarda;
 foreach($this->tareas as $tarea){
   echo $tarea['titulo'];
+  $tareaGuarda = $tarea;
 }
 ?>
 
-<form>
-  <input type="submit" value="Crear">
+<form method="post" action="tarea/update/<?php echo $tareaGuarda['id'];?>">
+  <button >Crear tarea</button>
 </form>
-
-
 
 

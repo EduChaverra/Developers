@@ -18,36 +18,27 @@
                 <li class="py-4 flex justify-between items-center">
                     <div>
                       <?php
-                        foreach($this->tareas as $tarea)
-                        {
-                          echo "<h3 class='text-lg font-bold'>". $tarea['titulo'] ."</h3>";
-                          echo "<p>". $tarea['descripcion'] . "</p>";
-                          echo "<p>". $tarea['estado'] . "</p>";
-                          echo "<p>". $tarea['hora_inicio'] . "</p>";
-                          echo "<p>". $tarea['hora_fin'] . "</p>";
-                          echo "<p>". $tarea['creado_en'] . "</p>";
-                          echo "<p>". $tarea['descripcion'] . "</p>";
-                        }
+                        foreach($this->tareas as $tarea) :
                       ?>
+                          <h3 class='text-lg font-bold'> <?= $tarea['titulo'];?> </h3> 
+                          <p> <?= $tarea['descripcion'];?> </p> 
+                          <p> <?= $tarea['estado']; ?> </p>
+                          <p> <?= $tarea['hora_inicio']; ?> </p>
+                          <p> <?= $tarea['hora_fin']; ?> </p>
+                          <p> <?= $tarea['creado_en']; ?> </p>
+                          <p> <?= $tarea['usuario']; ?> </p>
+                          <div class='flex space-x-2'>
+                            <button class='bg-yellow-500 text-white px-4 py-2 rounded' onclick="window.location.href='tarea/editar/<?$tarea['id']?>">
+                              Editar</button>
+                            <button class='bg-red-500 text-white px-4 py-2 rounded' onclick='confirmDelete(1)'>Eliminar</button>
+                          </div>
+                      <?php endforeach;?>
                     </div>
-                    <div class="flex space-x-2">
-                        <button class="bg-yellow-500 text-white px-4 py-2 rounded" onclick="window.location.href='/editar/1'">Editar</button>
-                        <button class="bg-red-500 text-white px-4 py-2 rounded" onclick="confirmDelete(1)">Eliminar</button>
-                    </div>
+                    
                 </li>
                 <!-- Más tareas aquí -->
             </ul>
         </div>
     </div>
-
-    <script>
-        function confirmDelete(id) {
-            if (confirm('¿Estás seguro que quieres eliminar esta tarea?')) {
-                // Lógica para eliminar la tarea
-                alert('Tarea eliminada');
-                // Redirigir o recargar la página después de eliminar
-            }
-        }
-    </script>
 </body>
 </html>

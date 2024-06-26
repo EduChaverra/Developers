@@ -1,24 +1,44 @@
-
-<h1>Tareas</h1>
-
-<?php
-require_once('../app/controllers/TareaController.php');
-for($i = 0; $i < 3; $i++)
-{
-  echo "<p>Hola $i</p>";
-}
-print_r($this->tareas);
-//print_r($this->tareas->id[1]);
-
-foreach($this->tareas as $tarea){
-  echo $tarea['titulo'];
-}
-?>
-
-<form>
-  <input type="submit" value="Crear">
-</form>
-
-
-
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>Lista de Tareas</title>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-4">
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h2 class="text-2xl font-bold mb-4">To Do</h2>
+            <div class="mb-4">
+                <button class="bg-green-500 text-white px-4 py-2 rounded" onclick="window.location.href='tarea/create'">+ Crear Nueva Tarea</button>
+            </div>
+            <ul class="divide-y divide-gray-200">
+                <!-- Ejemplo de tarea -->
+                <li class="py-4 flex justify-between items-center">
+                    <div>
+                      <?php
+                        foreach($this->tareas as $tarea) :
+                      ?>
+                          <h3 class='text-lg font-bold'> <?= $tarea['titulo'];?> </h3> 
+                          <p> <?= $tarea['descripcion'];?> </p> 
+                          <!--<p> <?= $tarea['estado']; ?> </p>
+                          <p> <?= $tarea['hora_inicio']; ?> </p>
+                          <p> <?= $tarea['hora_fin']; ?> </p>
+                          <p> <?= $tarea['creado_en']; ?> </p>
+                          <p> <?= $tarea['usuario']; ?> </p>-->
+                          <div class='flex space-x-2'>
+                            <button class='bg-yellow-500 text-white px-4 py-2 rounded' onclick="window.location.href='tarea/editar/<?$tarea['id']?>">
+                              Editar</button>
+                            <button class='bg-red-500 text-white px-4 py-2 rounded' onclick='confirmDelete(1)'>Eliminar</button>
+                          </div>
+                      <?php endforeach;?>
+                    </div>
+                    
+                </li>
+                <!-- Más tareas aquí -->
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

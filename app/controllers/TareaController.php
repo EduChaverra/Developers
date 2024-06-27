@@ -18,6 +18,7 @@ class TareaController extends Controller
         $tareas = $this->tareaModel->getAllTareas();
         //print_r($this->tareaModel->getTareaById(1));
         //$this->crearAction();
+        //$this->crearAction();
         $this->view->__set("tareas", $tareas);
     }
 
@@ -40,6 +41,12 @@ class TareaController extends Controller
     public function readAction($id)
     {
         $tarea = $this->tareaModel->getTareaById($id);
+        include 'views/scripts/tarea/mostrar.php';
+    }
+
+    public function updateAction($id)
+    {
+        $tarea = $this->tareaModel->getTareaById($id);
     }
 
     public function updateAction()
@@ -55,12 +62,11 @@ class TareaController extends Controller
             header('Location: index.phtml');
         } else {
             $tarea = $this->tareaModel->getTareaById($id);
-        }*/
-        $tareas = $this->tareaModel->getAllTareas();
-        $idUpdate = $this->_getParam('id');
-        $this->view->__set("tareas", $tareas);
-        $this->view->__set("idUpdate", $idUpdate);
+            include 'views/scripts/tarea/editar.phtml';
+        }
     }
+
+    
 
     public function deleteAction($id)
     {

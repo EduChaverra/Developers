@@ -11,6 +11,7 @@
  */
 $routes = array(
     '/' => 'tarea#index',
-    '/tarea/create' => 'tarea#create',
-    '/tarea/update/:id' =>'tarea#update'
+    '/create' => 'tarea#create',
+    '/update/:id' => 'tarea#update',
+    '/delete/:id' => 'tarea#delete'
 );

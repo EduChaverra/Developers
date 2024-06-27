@@ -18,9 +18,11 @@ class TareaController extends Controller
         $tareas = $this->tareaModel->getAllTareas();
         //print_r($this->tareaModel->getTareaById(1));
         //$this->crearAction();
+        //$this->crearAction();
         $this->view->__set("tareas", $tareas);
     }
 
+    public function createAction()
     public function createAction()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -45,7 +47,12 @@ class TareaController extends Controller
 
     public function updateAction($id)
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $tarea = $this->tareaModel->getTareaById($id);
+    }
+
+    public function updateAction()
+    {
+        /*if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $titulo = $_POST['titulo'];
             $descripcion = $_POST['descripcion'];
             $estado = $_POST['estado'];

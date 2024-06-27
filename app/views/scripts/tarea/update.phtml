@@ -1,1 +1,23 @@
-update
+<?php 
+$tarea = $this->tareas[$this->idUpdate];
+?>
+<div>
+    <h3 class='text-lg font-bold' contenteditable="true"> <?= $tarea['titulo'];?> </h3> 
+    <p contenteditable="true"> <?= $tarea['descripcion'];?> </p>
+    <p> <?= $tarea['estado']; ?> </p>
+    <p> <?= $tarea['hora_inicio']; ?> </p>
+    <p> <?= $tarea['hora_fin']; ?> </p>
+    <p> <?= $tarea['creado_en']; ?> </p>
+    <p> <?= $tarea['usuario']; ?> </p>
+</div>
+<div>
+    <h3>Editar</h3>
+    <form>
+        <p>Titulo: <input type="text" placeholder="Introduce nuevo texto"></p>
+            
+        <p>Descripción</p>
+        <p>Estado</p>
+        <p>Hora inicio</p>
+        <p>Hora fin</p>
+    </form>
+</div>

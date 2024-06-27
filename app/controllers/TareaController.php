@@ -49,7 +49,7 @@ class TareaController extends Controller
         $tarea = $this->tareaModel->getTareaById($id);
     }
 
-    public function updateAction()
+    /*public function updateAction()
     {
         /*if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $titulo = $_POST['titulo'];
@@ -64,7 +64,7 @@ class TareaController extends Controller
             $tarea = $this->tareaModel->getTareaById($id);
             include 'views/scripts/tarea/editar.phtml';
         }
-    }
+    }*/
 
     
 

@@ -23,7 +23,6 @@ class TareaController extends Controller
     }
 
     public function createAction()
-    public function createAction()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $titulo = $_POST['titulo'];

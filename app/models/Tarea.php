@@ -1,6 +1,6 @@
 <?php
 
-class Tarea
+class Tarea extends Model
 {
     private $db;
 

@@ -44,12 +44,12 @@ class TareaController extends Controller
         include 'views/scripts/tarea/mostrar.php';
     }
 
-    public function updateAction($id)
+    /*public function updateAction($id)
     {
         $tarea = $this->tareaModel->getTareaById($id);
-    }
+    }*/
 
-    /*public function updateAction()
+    public function updateAction()
     {
         /*if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $titulo = $_POST['titulo'];
@@ -63,15 +63,21 @@ class TareaController extends Controller
         } else {
             $tarea = $this->tareaModel->getTareaById($id);
             include 'views/scripts/tarea/editar.phtml';
-        }
-    }*/
+        }*/
+        $tareas = $this->tareaModel->getAllTareas();
+        $idUpdate = $this->_getParam('id');
+        $this->view->__set("tareas", $tareas);
+        $this->view->__set("idUpdate", $idUpdate);
+    }
 
     
 
-    public function deleteAction($id)
+    public function deleteAction()
     {
-        $this->tareaModel->deleteTarea($id);
-        header('Location: index.php');
+        $tareas = $this->tareaModel->getAllTareas();
+        $idUpdate = $this->_getParam('id');
+        $this->tareaModel->deleteTarea($idUpdate);
+        header('Location: ' . WEB_ROOT . '/');
     }
 }
 ?>

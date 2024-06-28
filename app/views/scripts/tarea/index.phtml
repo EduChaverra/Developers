@@ -16,7 +16,7 @@
                         <p>Descripción de la tarea</p>
                     </div>
                     <div class="flex space-x-2">
-                        <button class="bg-yellow-500 text-white px-4 py-2 rounded" onclick="window.location.href='/editar/1'">Editar</button>
+                        <button class="bg-yellow-500 text-white px-4 py-2 rounded" onclick="window.location.href='/update/1'">Editar</button>
                         <button class="bg-red-500 text-white px-4 py-2 rounded" onclick="confirmDelete(1)">Eliminar</button>
                       <?php
                         foreach($this->tareas as $tarea) :
@@ -30,7 +30,7 @@
                           <p> <?= $tarea['usuario']; ?> </p>-->
                           <div class='flex space-x-2'>
                             <form method="POST" action="tarea/update/<?=$tarea['id']?>">
-                              <button class='bg-yellow-500 text-white px-4 py-2 rounded' onclick="window.location.href='tarea/update/<?$tarea['id']?>'">
+                              <button class='bg-yellow-500 text-white px-4 py-2 rounded' onclick="window.location.href='/update/<?$tarea['id']?>'">
                                 Editar
                               </button>
                               <input type="hidden" name="id" value="<?=$tarea['id']?>"/>

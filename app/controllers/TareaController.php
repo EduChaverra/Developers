@@ -13,7 +13,7 @@ class TareaController extends Controller
 
     public function indexAction()
     {
-        //$tareas = $this->tareaModel->createTarea("Tarea1", "Descripción1", "acabado", '2003-12-31 12:00:00', '2003-12-31 12:00:00', 1);
+        //$tareas = $this->tareaModel->createTarea("Tarea1", "Descripción1", "pendiente", '2003-12-31 12:00:00', '2003-12-31 12:00:00', 1);
         //$tareas = $this->tareaModel->createTarea("Tarea2", "Descripción2", "empezado", '2003-12-31 12:00:00', '2003-12-31 12:00:00', 2);
         $tareas = $this->tareaModel->getAllTareas();
         //print_r($this->tareaModel->getTareaById(1));
@@ -28,14 +28,20 @@ class TareaController extends Controller
             $titulo = $_POST['titulo'];
             $descripcion = $_POST['descripcion'];
             $estado = $_POST['estado'];
-            $hora_inicio = $_POST['hora_inicio'];
-            $hora_fin = $_POST['hora_fin'];
+            $hora_inicio = !empty($_POST['hora_inicio']) ? $_POST['hora_inicio'] : null;
+            $hora_fin = !empty($_POST['hora_fin']) ? $_POST['hora_fin'] : null;
             $usuario = $_POST['usuario'];
-            $this->tareaModel->createTarea($titulo, $descripcion, $estado, $hora_inicio, $hora_fin, $usuario);
-            header('Location: index.phtml');
+
+            if ($this->tareaModel->createTarea($titulo, $descripcion, $estado, $hora_inicio, $hora_fin, $usuario)) {
+                header('Location: ' . WEB_ROOT . '/');
+                exit("Nueva tarea creada con éxito");
+            } else {
+                exit("Error al crear la tarea");
+            }
         } else {
-            //include 'views/scripts/tarea/crear.phtml';
+            include 'views/create.phtml';
         }
+    
     }
 
     public function readAction($id)
@@ -70,8 +76,8 @@ class TareaController extends Controller
 
     public function deleteAction($id)
     {
-        $this->tareaModel->deleteTarea($id);
-        header('Location: index.php');
+       $this->tareaModel->deleteTarea($id);
+        header('Location: /');
     }
 }
 ?>

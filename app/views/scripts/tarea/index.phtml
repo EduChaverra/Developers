@@ -29,15 +29,15 @@
                           <p> <?= $tarea['creado_en']; ?> </p>
                           <p> <?= $tarea['usuario']; ?> </p>-->
                           <div class='flex space-x-2'>
-                            <form method="POST" action="update/<?=$tarea['id']?>">
-                              <button class='bg-yellow-500 text-white px-4 py-2 rounded' onclick="window.location.href='/update/<?$tarea['id']?>'">
+                            <form method="POST" action="update/<?= $tarea['id'] - 1?>">
+                              <button class='bg-yellow-500 text-white px-4 py-2 rounded' onclick="window.location.href='update/<?$tarea['id']?>'">
                                 Editar
                               </button>
-                              <input type="hidden" name="id" value="<?=$tarea['id']?>"/>
+                              <!--<input type="hidden" name="id" value="<?=$tarea['id']?>"/>-->
                             </form>
-                            <form method="POST" action="<?=$tarea['id']?>">
+                            <form method="POST" action="delete/<?=$tarea['id']?>">
                               <button class='bg-red-500 text-white px-4 py-2 rounded' onclick='confirmDelete(1)'>Eliminar</button>
-                              <input type="hidden" name="id" value="<?=$tarea['id']?>"/>
+                              <input type="hidden" name="id" id="<?=$tarea['id']?>"/>
                             </form>
                           </div>
                       <?php endforeach;?>

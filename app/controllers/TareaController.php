@@ -76,9 +76,8 @@ class TareaController extends Controller
     {
         $tareas = $this->tareaModel->getAllTareas();
         $idUpdate = $this->_getParam('id');
-        echo "hola";
-        $this->tareaModel->delete($idUpdate);
-        //header('Location: index.php');
+        $this->tareaModel->deleteTarea($idUpdate);
+        header('Location: ' . WEB_ROOT . '/');
     }
 }
 ?>

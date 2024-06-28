@@ -6,7 +6,7 @@
         <div class="bg-white p-6 rounded-lg shadow-lg">
             <h2 class="text-2xl font-bold mb-4">To Do</h2>
             <div class="mb-4">
-                <button class="bg-green-500 text-white px-4 py-2 rounded" onclick="window.location.href='/create'">+ Crear Nueva Tarea</button>
+                <button class="bg-green-500 text-white px-4 py-2 rounded" onclick="window.location.href='<?php echo WEB_ROOT?>/create'">+ Crear Nueva Tarea</button>
             </div>
             <!--<ul class="divide-y divide-gray-200">-->
                 <!-- Ejemplo de tarea -->
@@ -14,19 +14,19 @@
                     <!--<div>
                         <h3 class="text-lg font-bold">Nombre de la tarea</h3>
                         <p>Descripción de la tarea</p>
-                    </div>
+                    </div>-->
                       <?php
                         foreach($this->tareas as $tarea) :
                       ?>
                           <h3 class='text-lg font-bold'> <?= $tarea['titulo'];?> </h3>
                           <p> <?= $tarea['descripcion'];?> </p> 
-                          <!--<p> <?= $tarea['estado']; ?> </p>
+                          <p> <?= $tarea['estado']; ?> </p>
                           <p> <?= $tarea['hora_inicio']; ?> </p>
                           <p> <?= $tarea['hora_fin']; ?> </p>
                           <p> <?= $tarea['creado_en']; ?> </p>
-                          <p> <?= $tarea['usuario']; ?> </p>-->
+                          <p> <?= $tarea['usuario']; ?> </p>
                           <div class='flex space-x-2'>
-                            <form method="POST" action="update/<?= $tarea['id'] - 1?>">
+                            <form method="POST" action="update/<?= $tarea['id']?>">
                               <button class='bg-yellow-500 text-white px-4 py-2 rounded' onclick="window.location.href='update/<?$tarea['id']?>'">
 
                                 Editar

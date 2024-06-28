@@ -39,7 +39,7 @@ class TareaController extends Controller
                 exit("Error al crear la tarea");
             }
         } else {
-            include 'views/create.phtml';
+            //include 'views/create.phtml';
         }
     
     }
@@ -72,8 +72,9 @@ class TareaController extends Controller
         }*/
         $tareas = $this->tareaModel->getAllTareas();
         $idUpdate = $this->_getParam('id');
+        $currentTarea = $this->tareaModel->getTareaById($idUpdate);
         $this->view->__set("tareas", $tareas);
-        $this->view->__set("idUpdate", $idUpdate);
+        $this->view->__set("currentTarea", $currentTarea);
     }
 
     
@@ -81,8 +82,8 @@ class TareaController extends Controller
     public function deleteAction()
     {
         $tareas = $this->tareaModel->getAllTareas();
-        $idUpdate = $this->_getParam('id');
-        $this->tareaModel->deleteTarea($idUpdate);
+        $idDelete = $this->_getParam('id');
+        $this->tareaModel->deleteTarea($idDelete);
         header('Location: ' . WEB_ROOT . '/');
     }
 }

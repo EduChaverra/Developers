@@ -68,8 +68,8 @@ class TareaController extends Controller
         $titulo = $_POST['titulo'];
         $descripcion = $_POST['descripcion'];
         $estado = $_POST['estado'];
-        $hora_inicio = $_POST['hora_inicio'];
-        $hora_fin = $_POST['hora_fin'];
+        $hora_inicio = !empty($_POST['hora_inicio']) ? $_POST['hora_inicio'] : null;
+        $hora_fin = !empty($_POST['hora_fin']) ? $_POST['hora_fin'] : null;
         $usuario = $_POST['usuario'];
     
         if ($this->tareaModel->updateTarea($idUpdate, $titulo, $descripcion, $estado, $hora_inicio, $hora_fin, $usuario)) {
@@ -87,7 +87,7 @@ class TareaController extends Controller
         $tareas = $this->tareaModel->getAllTareas();
         $idDelete = $this->_getParam('id');
         $this->tareaModel->deleteTarea($idDelete);
-        header('Location: ' . WEB_ROOT . '/');
+        //header('Location: ' . WEB_ROOT . '/');
     }
 }
 ?>

@@ -38,9 +38,7 @@ class TareaController extends Controller
             } else {
                 exit("Error al crear la tarea");
             }
-        } else {
-            //include 'views/create.phtml';
-        }
+        } 
     
     }
 
@@ -50,31 +48,36 @@ class TareaController extends Controller
         include 'views/scripts/tarea/mostrar.php';
     }
 
-    /*public function updateAction($id)
-    {
-        $tarea = $this->tareaModel->getTareaById($id);
-    }*/
 
+    public function showAction()
+    {
+        // Obtener el ID de la tarea a actualizar
+        $idUpdate = $this->_getParam('id');
+    
+        // Obtener la tarea actual para pre-llenar el formulario
+        $currentTarea = $this->tareaModel->getTareaById($idUpdate);
+        
+        // Pasar los datos a la vista
+        $this->view->__set("currentTarea", $currentTarea);
+    }
+    
     public function updateAction()
     {
-        /*if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $titulo = $_POST['titulo'];
-            $descripcion = $_POST['descripcion'];
-            $estado = $_POST['estado'];
-            $hora_inicio = $_POST['hora_inicio'];
-            $hora_fin = $_POST['hora_fin'];
-            $usuario = $_POST['usuario'];
-            $this->tareaModel->updateTarea($id, $titulo, $descripcion, $estado, $hora_inicio, $hora_fin, $usuario);
-            header('Location: index.phtml');
-        } else {
-            $tarea = $this->tareaModel->getTareaById($id);
-            include 'views/scripts/tarea/editar.phtml';
-        }*/
-        $tareas = $this->tareaModel->getAllTareas();
         $idUpdate = $this->_getParam('id');
-        $currentTarea = $this->tareaModel->getTareaById($idUpdate);
-        $this->view->__set("tareas", $tareas);
-        $this->view->__set("currentTarea", $currentTarea);
+    
+        $titulo = $_POST['titulo'];
+        $descripcion = $_POST['descripcion'];
+        $estado = $_POST['estado'];
+        $hora_inicio = $_POST['hora_inicio'];
+        $hora_fin = $_POST['hora_fin'];
+        $usuario = $_POST['usuario'];
+    
+        if ($this->tareaModel->updateTarea($idUpdate, $titulo, $descripcion, $estado, $hora_inicio, $hora_fin, $usuario)) {
+            header('Location: ' . WEB_ROOT . '/');
+            exit("Tarea actualizada con éxito");
+        } else {
+            exit("Error al actualizar la tarea");
+        }
     }
 
     

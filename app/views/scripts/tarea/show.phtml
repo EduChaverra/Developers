@@ -11,31 +11,31 @@ $tarea = $this->currentTarea;
             <form action="<?php echo WEB_ROOT ?>/update/<?php echo htmlspecialchars($tarea['id']); ?>" method="POST">
                 <div class="mb-4">
                     <label for="titulo" class="block text-gray-700">Nombre de la tarea:</label>
-                    <input type="text" id="titulo" name="titulo" class="w-full px-4 py-2 border rounded" placeholder="Ingrese el nombre de la tarea" value="<?= htmlspecialchars($tarea['titulo']); ?>" required>
+                    <input type="text" id="titulo" name="titulo" class="w-full px-4 py-2 border rounded" placeholder="Ingrese el nombre de la tarea" value="<?= htmlspecialchars($this->tarea->titulo); ?>" required>
                 </div>
                 <div class="mb-4">
                     <label for="descripcion" class="block text-gray-700">Descripción:</label>
-                    <textarea id="descripcion" name="descripcion" class="w-full px-4 py-2 border rounded" placeholder="Ingrese la descripción de la tarea"><?= htmlspecialchars($tarea['descripcion']); ?></textarea>
+                    <textarea id="descripcion" name="descripcion" class="w-full px-4 py-2 border rounded" placeholder="Ingrese la descripción de la tarea"><?= htmlspecialchars($this->tarea->descripcion); ?></textarea>
                 </div>
                 <div class="mb-4">
                     <label for="estado" class="block text-gray-700">Estado:</label>
                     <select id="estado" name="estado" class="w-full px-4 py-2 border rounded">
-                        <option value="pendiente" <?= $tarea['estado'] == 'pendiente' ? 'selected' : '' ?>>Pendiente</option>
-                        <option value="en_progreso" <?= $tarea['estado'] == 'en_progreso' ? 'selected' : '' ?>>En progreso</option>
-                        <option value="completada" <?= $tarea['estado'] == 'completada' ? 'selected' : '' ?>>Completada</option>
+                        <option value="pendiente" <?= $this->tarea->estado == 'pendiente' ? 'selected' : '' ?>>Pendiente</option>
+                        <option value="en_progreso" <?= $this->tarea->estado == 'en_progreso' ? 'selected' : '' ?>>En progreso</option>
+                        <option value="completada" <?= $this->tarea->estado == 'completada' ? 'selected' : '' ?>>Completada</option>
                     </select>
                 </div>
                 <div class="mb-4">
                     <label for="hora_inicio" class="block text-gray-700">Hora de inicio:</label>
-                    <input type="datetime-local" id="hora_inicio" name="hora_inicio" class="w-full px-4 py-2 border rounded" value="<?= date('Y-m-d\TH:i', strtotime($tarea['hora_inicio'])); ?>">
+                    <input type="datetime-local" id="hora_inicio" name="hora_inicio" class="w-full px-4 py-2 border rounded" value="<?= date('Y-m-d\TH:i', strtotime($this->tarea->hora_inicio)); ?>">
                 </div>
                 <div class="mb-4">
                     <label for="hora_fin" class="block text-gray-700">Hora de fin:</label>
-                    <input type="datetime-local" id="hora_fin" name="hora_fin" class="w-full px-4 py-2 border rounded" value="<?= date('Y-m-d\TH:i', strtotime($tarea['hora_fin'])); ?>">
+                    <input type="datetime-local" id="hora_fin" name="hora_fin" class="w-full px-4 py-2 border rounded" value="<?= date('Y-m-d\TH:i', strtotime($this->tarea->hora_fin)); ?>">
                 </div>
                 <div class="mb-4">
                     <label for="usuario" class="block text-gray-700">Usuario:</label>
-                    <input type="text" id="usuario" name="usuario" class="w-full px-4 py-2 border rounded" placeholder="Ingrese el nombre del usuario" value="<?= htmlspecialchars($tarea['usuario']); ?>" required>
+                    <input type="text" id="usuario" name="usuario" class="w-full px-4 py-2 border rounded" placeholder="Ingrese el nombre del usuario" value="<?= htmlspecialchars($this->tarea->usuario); ?>" required>
                 </div>
                 <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Guardar Cambios</button>
             </form>

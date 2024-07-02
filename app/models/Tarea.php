@@ -2,7 +2,7 @@
 
 class Tarea extends Model
 {
-    protected $_file = '/Users/eduardochaverra/Documents/IT Academy/Developers/data/tareas.json';
+    protected $_file = ROOT_PATH . '/data/tareas.json';
 
     public function fetchAllTarea()
     {
@@ -12,6 +12,7 @@ class Tarea extends Model
 
     public function fetchOneTarea($id)
     {
+        
         $tareas = $this->fetchAllTarea();
         foreach ($tareas as $tarea) {
             if ($tarea->id == $id) {

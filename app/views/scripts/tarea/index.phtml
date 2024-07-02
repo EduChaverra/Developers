@@ -118,6 +118,7 @@
                       
                     <?php endif;?>
                 </div>
+
                     <!--</div>
                 </li>
                  Más tareas aquí 
@@ -126,11 +127,15 @@
     </div>
 
     <script>
-        function confirmDelete(id) {
+        async function confirmDelete(id) {
             if (confirm('¿Estás seguro que quieres eliminar esta tarea?')) {
-                // Lógica para eliminar la tarea
-                alert('Tarea eliminada');
-                // Redirigir o recargar la página después de eliminar
+              const formData = new FormData();
+              formData.append("id", id);
+              await fetch("delete/"+id, {
+                  method: "POST",
+                  body: formData,
+              });
+              window.location = "/"
             }
         }
     </script>

@@ -38,6 +38,14 @@ class Tarea extends Model
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function getTareaByState($state)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM todo_db.tareas WHERE estado = :state");
+        $stmt->bindParam(':state', $state, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
     public function updateTarea($id, $titulo, $descripcion, $estado, $hora_inicio, $hora_fin, $usuario)
     {
         $stmt = $this->db->prepare("UPDATE todo_db.tareas SET titulo = :titulo, descripcion = :descripcion, estado = :estado, hora_inicio = :hora_inicio, hora_fin = :hora_fin, usuario = :usuario WHERE id = :id");

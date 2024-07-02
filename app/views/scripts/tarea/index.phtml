@@ -15,30 +15,109 @@
                         <h3 class="text-lg font-bold">Nombre de la tarea</h3>
                         <p>Descripción de la tarea</p>
                     </div>-->
-                      <?php
-                        foreach($this->tareas as $tarea) :
-                      ?>
-                          <h3 class='text-lg font-bold'> <?= $tarea['titulo'];?> </h3>
-                          <p> <?= $tarea['descripcion'];?> </p> 
-                          <p> <?= $tarea['estado']; ?> </p>
-                          <p> <?= $tarea['hora_inicio']; ?> </p>
-                          <p> <?= $tarea['hora_fin']; ?> </p>
-                          <p> <?= $tarea['creado_en']; ?> </p>
-                          <p> <?= $tarea['usuario']; ?> </p>
-                          <div class='flex space-x-2'>
-                            <form method="POST" action="update/<?= $tarea['id']?>">
-                              <button class='bg-yellow-500 text-white px-4 py-2 rounded' onclick="window.location.href='update/<?$tarea['id']?>'">
+                  <div class="flex space-x-8">
+                    <?php
+                      if(count($this->tareas) > 0) :
+                    ?>
+                      <div class="w-1/3">
+                        <h2 class="text-lg font-bold py-2">Pendiente</h2>
+                        <?php
+                          if(count($this->tareasPendiente) > 0) :
+                            foreach($this->tareasPendiente as $tarea) :
+                        ?>
+                            <div class="rounded-lg shadow-lg p-4 mb-4 inline-block border border-gray-400">
+                              <h3 class='text-lg'> <?= $tarea['titulo'];?> </h3>
+                              <p class="text-md text-gray-600"> <?= $tarea['descripcion'];?> </p> 
+                              <p class="text-md text-gray-600"> <?= $tarea['estado']; ?> </p>
+                              <p class="text-md text-gray-600"> <?= $tarea['hora_inicio']; ?> </p>
+                              <p class="text-md text-gray-600"> <?= $tarea['hora_fin']; ?> </p>
+                              <p class="text-md text-gray-600"> <?= $tarea['creado_en']; ?> </p>
+                              <p class="text-md text-gray-600"> <?= $tarea['usuario']; ?> </p>
+                              <div class='flex space-x-2 mt-2'>
+                                <form method="POST" action="update/<?= $tarea['id']?>">
+                                  <button class='bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600' onclick="window.location.href='update/<?$tarea['id']?>'">
 
-                                Editar
-                              </button>
-                              <!--<input type="hidden" name="id" value="<?=$tarea['id']?>"/>-->
-                            </form>
-                            <form method="POST" action="delete/<?=$tarea['id']?>">
-                              <button class='bg-red-500 text-white px-4 py-2 rounded' onclick='confirmDelete(1)'>Eliminar</button>
-                              <input type="hidden" name="id" id="<?=$tarea['id']?>"/>
-                            </form>
-                          </div>
-                      <?php endforeach;?>
+                                    Editar
+                                  </button>
+                                </form>
+                                <form method="POST" action="delete/<?=$tarea['id']?>">
+                                  <button class='bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600' onclick='confirmDelete(1)'>Eliminar</button>
+                                  <input type="hidden" name="id" id="<?=$tarea['id']?>"/>
+                                </form>
+                              </div>
+                            </div>
+                            <?php endforeach;?>
+                        <?php else : ?>
+                          <h3 class='text-lg'>No hay tareas pendientes</h3><br>
+                        <?php endif;?>
+                      </div>
+                      <div class="w-1/3">
+                        <h2 class="text-lg font-bold py-2">En progreso</h2>
+                        <?php
+                          if(count($this->tareasEnProgreso) > 0) :
+                            foreach($this->tareasEnProgreso as $tarea) :
+                        ?>
+                            <div class="rounded-lg shadow-lg p-4 mb-4 inline-block border border-gray-400">
+                              <h3 class='text-lg'> <?= $tarea['titulo'];?> </h3>
+                              <p class="text-md text-gray-600"> <?= $tarea['descripcion'];?> </p> 
+                              <p class="text-md text-gray-600"> <?= $tarea['estado']; ?> </p>
+                              <p class="text-md text-gray-600"> <?= $tarea['hora_inicio']; ?> </p>
+                              <p class="text-md text-gray-600"> <?= $tarea['hora_fin']; ?> </p>
+                              <p class="text-md text-gray-600"> <?= $tarea['creado_en']; ?> </p>
+                              <p class="text-md text-gray-600"> <?= $tarea['usuario']; ?> </p>
+                              <div class='flex space-x-2 mt-2'>
+                                <form method="POST" action="update/<?= $tarea['id']?>">
+                                  <button class='bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600' onclick="window.location.href='update/<?$tarea['id']?>'">
+
+                                    Editar
+                                  </button>
+                                </form>
+                                <form method="POST" action="delete/<?=$tarea['id']?>">
+                                  <button class='bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600' onclick='confirmDelete(1)'>Eliminar</button>
+                                  <input type="hidden" name="id" id="<?=$tarea['id']?>"/>
+                                </form>
+                              </div>
+                            </div>
+                            <?php endforeach;?>
+                        <?php else : ?>
+                          <h3 class='text-lg'>No hay tareas en progreso</h3><br>
+                        <?php endif;?>
+                      </div>
+                      <div class="w-1/3">
+                        <h2 class="text-lg font-bold py-2">Completado</h2>
+                        <?php
+                          if(count($this->tareasCompletado) > 0) :
+                            foreach($this->tareasCompletado as $tarea) :
+                        ?>
+                            <div class="rounded-lg shadow-lg p-4 mb-4 inline-block border border-gray-400">
+                              <h3 class='text-lg'> <?= $tarea['titulo'];?> </h3>
+                              <p class="text-md text-gray-600"> <?= $tarea['descripcion'];?> </p> 
+                              <p class="text-md text-gray-600"> <?= $tarea['estado']; ?> </p>
+                              <p class="text-md text-gray-600"> <?= $tarea['hora_inicio']; ?> </p>
+                              <p class="text-md text-gray-600"> <?= $tarea['hora_fin']; ?> </p>
+                              <p class="text-md text-gray-600"> <?= $tarea['creado_en']; ?> </p>
+                              <p class="text-md text-gray-600"> <?= $tarea['usuario']; ?> </p>
+                              <div class='flex space-x-2 mt-2'>
+                                <form method="POST" action="update/<?= $tarea['id']?>">
+                                  <button class='bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600' onclick="window.location.href='update/<?$tarea['id']?>'">
+
+                                    Editar
+                                  </button>
+                                </form>
+                                <form method="POST" action="delete/<?=$tarea['id']?>">
+                                  <button class='bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600' onclick='confirmDelete(1)'>Eliminar</button>
+                                  <input type="hidden" name="id" id="<?=$tarea['id']?>"/>
+                                </form>
+                              </div>
+                            </div>
+                            <?php endforeach;?>
+                        <?php else : ?>
+                          <h3 class='text-lg'>No hay tareas completadas</h3><br>
+                        <?php endif;?>
+                      </div>
+                      
+                    <?php endif;?>
+                </div>
                     <!--</div>
                 </li>
                  Más tareas aquí 

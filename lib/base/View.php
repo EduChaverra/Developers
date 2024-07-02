@@ -177,4 +177,28 @@ class View
 	{
 	  return !$this->_layoutEnabled;
 	}
+
+	function renderTareas($titulo, $tareas) {
+    echo "<div>";
+    echo "<h2 class='text-lg font-bold'>{$titulo}</h2>";
+    foreach($tareas as $tarea) {
+        echo "<h3 class='text-lg font-bold'>{$tarea['titulo']}</h3>";
+        echo "<p>{$tarea['descripcion']}</p>";
+        echo "<p>{$tarea['estado']}</p>";
+        echo "<p>{$tarea['hora_inicio']}</p>";
+        echo "<p>{$tarea['hora_fin']}</p>";
+        echo "<p>{$tarea['creado_en']}</p>";
+        echo "<p>{$tarea['usuario']}</p>";
+        echo "<div class='flex space-x-2'>";
+        echo "<form method='POST' action='update/{$tarea['id']}'>";
+        echo "<button class='bg-yellow-500 text-white px-4 py-2 rounded' onclick=\"window.location.href='update/{$tarea['id']}'\">Editar</button>";
+        echo "</form>";
+        echo "<form method='POST' action='delete/{$tarea['id']}'>";
+        echo "<button class='bg-red-500 text-white px-4 py-2 rounded' onclick='confirmDelete(1)'>Eliminar</button>";
+        echo "<input type='hidden' name='id' value='{$tarea['id']}'/>";
+        echo "</form>";
+        echo "</div>";
+    }
+    echo "</div>";
+}
 }

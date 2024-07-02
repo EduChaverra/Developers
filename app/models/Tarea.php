@@ -32,7 +32,7 @@ class Tarea extends Model
         } else {
             $maxId = max(array_column($tareas, 'id'));
         }
-
+        
         if (isset($data['id'])) {
             foreach ($tareas as $key => $tarea) {
                 if ($tarea->id == $data['id']) {
@@ -48,6 +48,11 @@ class Tarea extends Model
         $json = json_encode($tareas, JSON_PRETTY_PRINT);
         file_put_contents($this->_file, $json);
         return true;
+    }
+
+    public function updateTarea($data = array())
+    {
+        $tareas = $this->fetchAllTarea();
     }
 
     public function deleteTarea($id)

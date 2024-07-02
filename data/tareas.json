@@ -18,12 +18,21 @@
         "id": 6
     },
     {
-        "titulo": "c nchgc",
-        "descripcion": "12345",
+        "titulo": "adios",
+        "descripcion": "fedfdfdf",
+        "estado": "pendiente",
+        "hora_inicio": "1970-01-01T01:00",
+        "hora_fin": "1970-01-01T01:00",
+        "usuario": "d",
+        "id": 7
+    },
+    {
+        "titulo": "a",
+        "descripcion": "a",
         "estado": "pendiente",
         "hora_inicio": "",
         "hora_fin": "",
-        "usuario": "Cristian",
-        "id": 7
+        "usuario": "a",
+        "id": 8
     }
 ]

@@ -4,15 +4,15 @@ class Tarea extends Model
 {
     protected $_file = '/Users/eduardochaverra/Documents/IT Academy/Developers/data/tareas.json';
 
-    public function fetchAll()
+    public function fetchAllTarea()
     {
         $json = file_get_contents($this->_file);
         return json_decode($json) ?: []; // Retornar un array vacío si el JSON está vacío o inválido
     }
 
-    public function fetchOne($id)
+    public function fetchOneTarea($id)
     {
-        $tareas = $this->fetchAll();
+        $tareas = $this->fetchAllTarea();
         foreach ($tareas as $tarea) {
             if ($tarea->id == $id) {
                 return $tarea;
@@ -21,9 +21,9 @@ class Tarea extends Model
         return null;
     }
 
-    public function save($data = array())
+    public function saveTarea($data = array())
     {
-        $tareas = $this->fetchAll();
+        $tareas = $this->fetchAllTarea();
 
         if (empty($tareas)) {
             $tareas = [];
@@ -49,9 +49,9 @@ class Tarea extends Model
         return true;
     }
 
-    public function delete($id)
+    public function deleteTarea($id)
     {
-        $tareas = $this->fetchAll();
+        $tareas = $this->fetchAllTarea();
         foreach ($tareas as $key => $tarea) {
             if ($tarea->id == $id) {
                 unset($tareas[$key]);

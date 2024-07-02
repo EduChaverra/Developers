@@ -12,14 +12,14 @@ class TareaController extends Controller
 
     public function indexAction()
     {
-        $this->view->tareas = $this->_model->fetchAll();
+        $this->view->tareas = $this->_model->fetchAllTarea();
     }
 
     public function createAction()
     {
         if ($this->getRequest()->isPost()) {
             $data = $this->getRequest()->getAllParams();
-            $this->_model->save($data);
+            $this->_model->saveTarea($data);
             header('Location: ' . WEB_ROOT . '/');
         }
     }
@@ -27,25 +27,25 @@ class TareaController extends Controller
     public function showAction()
     {
         $id = $this->_getParam('id');
-        $this->view->tarea = $this->_model->fetchOne($id);
+        $this->view->tarea = $this->_model->fetchOneTarea($id);
     }
 
     public function updateAction()
     {
         if ($this->getRequest()->isPost()) {
             $data = $this->getRequest()->getAllParams();
-            $this->_model->save($data);
+            $this->_model->saveTarea($data);
             header('Location: ' . WEB_ROOT . '/');
         } else {
             $id = $this->_getParam('id');
-            $this->view->tarea = $this->_model->fetchOne($id);
+            $this->view->tarea = $this->_model->fetchOneTarea($id);
         }
     }
 
     public function deleteAction()
     {
         $id = $this->_getParam('id');
-        $this->_model->delete($id);
+        $this->_model->deleteTarea($id);
         header('Location: ' . WEB_ROOT . '/');
     }
 }

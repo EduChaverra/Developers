@@ -14,7 +14,7 @@ class TareaController extends Controller
     {
 
         $this->view->tareas = $this->_model->fetchAllTarea();
-
+        $tareas = $this->view->tareas;
         //$tareas = $this->tareaModel->getAllTareas();
 
         $this->view->__set("tareas", $tareas);
@@ -26,7 +26,7 @@ class TareaController extends Controller
 
             foreach($tareas as $tarea)
             {
-                switch($tarea["estado"])
+                switch($tarea->id)
                 {
                     case "pendiente":
                         array_push($tareasPendiente, $tarea);

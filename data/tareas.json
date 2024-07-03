@@ -1,47 +1,11 @@
 [
     {
-        "titulo": "sfgdrtf",
-        "descripcion": "",
-        "estado": "pendiente",
-        "hora_inicio": "",
-        "hora_fin": "",
-        "usuario": "gdghdf",
-        "id": 6
-    },
-    {
-        "titulo": "a",
-        "descripcion": "a",
-        "estado": "pendiente",
-        "hora_inicio": "",
-        "hora_fin": "",
-        "usuario": "a",
-        "id": 9
-    },
-    {
-        "titulo": "h",
-        "descripcion": "h",
-        "estado": "pendiente",
-        "hora_inicio": "",
-        "hora_fin": "",
-        "usuario": "h",
-        "id": 10
-    },
-    {
-        "titulo": "an",
-        "descripcion": "",
+        "id": "1",
+        "titulo": "aaa",
+        "descripcion": "aaa",
         "estado": "completada",
-        "hora_inicio": "",
-        "hora_fin": "",
-        "usuario": "an",
-        "id": 11
-    },
-    {
-        "titulo": "grger",
-        "descripcion": "ebgr",
-        "estado": "en_progreso",
-        "hora_inicio": "2024-07-25T11:07",
-        "hora_fin": "",
-        "usuario": "grwgr",
-        "id": 12
+        "hora_inicio": "2024-07-03T12:45",
+        "hora_fin": "2024-07-03T13:45",
+        "usuario": "aaa"
     }
 ]

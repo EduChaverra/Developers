@@ -51,8 +51,18 @@ class TareaController extends Controller
     {
         if ($this->getRequest()->isPost()) {
             $data = $this->getRequest()->getAllParams();
+    
+            if (isset($data['hora_inicio']) && !$this->isValidDate($data['hora_inicio'])) {
+                $data['hora_inicio'] = null;
+            }
+    
+            if (isset($data['hora_fin']) && !$this->isValidDate($data['hora_fin'])) {
+                $data['hora_fin'] = null;
+            }
+    
             $this->_model->saveTarea($data);
             header('Location: ' . WEB_ROOT . '/');
+            exit;
         }
     }
 
@@ -66,6 +76,15 @@ class TareaController extends Controller
     {
         if ($this->getRequest()->isPost()) {
             $data = $this->getRequest()->getAllParams();
+
+            if (isset($data['hora_inicio']) && !$this->isValidDate($data['hora_inicio'])) {
+                $data['hora_inicio'] = null;
+            }
+    
+            if (isset($data['hora_fin']) && !$this->isValidDate($data['hora_fin'])) {
+                $data['hora_fin'] = null;
+            }
+            
             $this->_model->saveTarea($data);
             header('Location: ' . WEB_ROOT . '/');
         } else {
@@ -79,6 +98,11 @@ class TareaController extends Controller
         $id = $this->_getParam('id');
         $this->_model->deleteTarea($id);
         header('Location: ' . WEB_ROOT . '/');
+    }
+
+    private function isValidDate($date)
+    {
+        return $date && strtotime($date) !== false;
     }
 }
 

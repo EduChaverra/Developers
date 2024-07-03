@@ -17,7 +17,7 @@ class TareaController extends Controller
         $tareas = $this->view->tareas;
         //$tareas = $this->tareaModel->getAllTareas();
 
-        $this->view->__set("tareas", $tareas);
+        
         if(count($tareas) > 0)
         {
             $tareasEnProgreso = [];
@@ -26,7 +26,7 @@ class TareaController extends Controller
 
             foreach($tareas as $tarea)
             {
-                switch($tarea->id)
+                switch($tarea->estado)
                 {
                     case "pendiente":
                         array_push($tareasPendiente, $tarea);
@@ -44,6 +44,7 @@ class TareaController extends Controller
             $this->view->__set("tareasEnProgreso", $tareasEnProgreso);
             $this->view->__set("tareasCompletado", $tareasCompletado);
         }
+        $this->view->__set("tareas", $tareas);
     }
 
     public function createAction()

@@ -1,14 +1,5 @@
 [
     {
-        "titulo": "hola",
-        "descripcion": "fedfdfdf",
-        "estado": "pendiente",
-        "hora_inicio": "",
-        "hora_fin": "",
-        "usuario": "d",
-        "id": 5
-    },
-    {
         "titulo": "sfgdrtf",
         "descripcion": "",
         "estado": "pendiente",
@@ -18,24 +9,6 @@
         "id": 6
     },
     {
-        "titulo": "adios",
-        "descripcion": "fedfdfdf",
-        "estado": "pendiente",
-        "hora_inicio": "1970-01-01T01:00",
-        "hora_fin": "1970-01-01T01:00",
-        "usuario": "d",
-        "id": 7
-    },
-    {
-        "titulo": "a",
-        "descripcion": "a",
-        "estado": "pendiente",
-        "hora_inicio": "",
-        "hora_fin": "",
-        "usuario": "a",
-        "id": 8
-    },
-    {
         "titulo": "a",
         "descripcion": "a",
         "estado": "pendiente",
@@ -43,5 +16,32 @@
         "hora_fin": "",
         "usuario": "a",
         "id": 9
+    },
+    {
+        "titulo": "h",
+        "descripcion": "h",
+        "estado": "pendiente",
+        "hora_inicio": "",
+        "hora_fin": "",
+        "usuario": "h",
+        "id": 10
+    },
+    {
+        "titulo": "an",
+        "descripcion": "",
+        "estado": "completada",
+        "hora_inicio": "",
+        "hora_fin": "",
+        "usuario": "an",
+        "id": 11
+    },
+    {
+        "titulo": "grger",
+        "descripcion": "ebgr",
+        "estado": "en_progreso",
+        "hora_inicio": "2024-07-25T11:07",
+        "hora_fin": "",
+        "usuario": "grwgr",
+        "id": 12
     }
 ]

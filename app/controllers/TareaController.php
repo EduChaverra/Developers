@@ -12,7 +12,38 @@ class TareaController extends Controller
 
     public function indexAction()
     {
+
         $this->view->tareas = $this->_model->fetchAllTarea();
+
+        //$tareas = $this->tareaModel->getAllTareas();
+
+        $this->view->__set("tareas", $tareas);
+        if(count($tareas) > 0)
+        {
+            $tareasEnProgreso = [];
+            $tareasPendiente = [];
+            $tareasCompletado =[];
+
+            foreach($tareas as $tarea)
+            {
+                switch($tarea["estado"])
+                {
+                    case "pendiente":
+                        array_push($tareasPendiente, $tarea);
+                        break;
+                    case "en_progreso":
+                        array_push($tareasEnProgreso, $tarea);
+                        break;
+                    case "completada":
+                        array_push($tareasCompletado, $tarea);
+                        break;
+                }
+            }
+
+            $this->view->__set("tareasPendiente", $tareasPendiente);
+            $this->view->__set("tareasEnProgreso", $tareasEnProgreso);
+            $this->view->__set("tareasCompletado", $tareasCompletado);
+        }
     }
 
     public function createAction()

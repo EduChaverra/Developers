@@ -124,6 +124,7 @@ class Model
 	 */
 	public function delete($id)
 	{
+		echo "hola delete";
 		$statement = $this->_dbh->prepare("delete from " . $this->_table . " where id = ?");
 		return $statement->execute(array($id));
 	}

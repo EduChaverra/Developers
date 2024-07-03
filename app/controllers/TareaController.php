@@ -1,83 +1,109 @@
 <?php
 
-// echo "Hello"; (Testa para saber si esta redirigiendo bien la ruta... si lo hace!!!)
-
 class TareaController extends Controller
 {
-    private $tareaModel;
+    protected $_model;
 
-    public function __construct()
+    public function init()
     {
-        $this->tareaModel = new Tarea();
+        parent::init();
+        $this->_model = new Tarea();
     }
 
     public function indexAction()
     {
-        //$tareas = $this->tareaModel->createTarea("Tarea1", "Descripción1", "pendiente", '2003-12-31 12:00:00', '2003-12-31 12:00:00', 1);
-        //$tareas = $this->tareaModel->createTarea("Tarea2", "Descripción2", "empezado", '2003-12-31 12:00:00', '2003-12-31 12:00:00', 2);
-        $tareas = $this->tareaModel->getAllTareas();
-        //print_r($this->tareaModel->getTareaById(1));
-        //$this->crearAction();
-        //$this->crearAction();
+
+        $this->view->tareas = $this->_model->fetchAllTarea();
+        $tareas = $this->view->tareas;
+        //$tareas = $this->tareaModel->getAllTareas();
+
+        
+        if(count($tareas) > 0)
+        {
+            $tareasEnProgreso = [];
+            $tareasPendiente = [];
+            $tareasCompletado =[];
+
+            foreach($tareas as $tarea)
+            {
+                switch($tarea->estado)
+                {
+                    case "pendiente":
+                        array_push($tareasPendiente, $tarea);
+                        break;
+                    case "en_progreso":
+                        array_push($tareasEnProgreso, $tarea);
+                        break;
+                    case "completada":
+                        array_push($tareasCompletado, $tarea);
+                        break;
+                }
+            }
+
+            $this->view->__set("tareasPendiente", $tareasPendiente);
+            $this->view->__set("tareasEnProgreso", $tareasEnProgreso);
+            $this->view->__set("tareasCompletado", $tareasCompletado);
+        }
         $this->view->__set("tareas", $tareas);
     }
 
     public function createAction()
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $titulo = $_POST['titulo'];
-            $descripcion = $_POST['descripcion'];
-            $estado = $_POST['estado'];
-            $hora_inicio = !empty($_POST['hora_inicio']) ? $_POST['hora_inicio'] : null;
-            $hora_fin = !empty($_POST['hora_fin']) ? $_POST['hora_fin'] : null;
-            $usuario = $_POST['usuario'];
-
-            if ($this->tareaModel->createTarea($titulo, $descripcion, $estado, $hora_inicio, $hora_fin, $usuario)) {
-                header('Location: ' . WEB_ROOT . '/');
-                exit("Nueva tarea creada con éxito");
-            } else {
-                exit("Error al crear la tarea");
+        if ($this->getRequest()->isPost()) {
+            $data = $this->getRequest()->getAllParams();
+    
+            if (isset($data['hora_inicio']) && !$this->isValidDate($data['hora_inicio'])) {
+                $data['hora_inicio'] = null;
             }
-        } else {
-            include 'views/create.phtml';
-        }
     
-    }
-
-    public function readAction($id)
-    {
-        $tarea = $this->tareaModel->getTareaById($id);
-        include 'views/scripts/tarea/mostrar.php';
-    }
-
-    public function updateAction($id)
-    {
-        $tarea = $this->tareaModel->getTareaById($id);
-    }
-
-    /*public function updateAction()
-    {
-        /*if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $titulo = $_POST['titulo'];
-            $descripcion = $_POST['descripcion'];
-            $estado = $_POST['estado'];
-            $hora_inicio = $_POST['hora_inicio'];
-            $hora_fin = $_POST['hora_fin'];
-            $usuario = $_POST['usuario'];
-            $this->tareaModel->updateTarea($id, $titulo, $descripcion, $estado, $hora_inicio, $hora_fin, $usuario);
-            header('Location: index.phtml');
-        } else {
-            $tarea = $this->tareaModel->getTareaById($id);
-            include 'views/scripts/tarea/editar.phtml';
-        }
-    }*/
-
+            if (isset($data['hora_fin']) && !$this->isValidDate($data['hora_fin'])) {
+                $data['hora_fin'] = null;
+            }
     
+            $this->_model->saveTarea($data);
+            header('Location: ' . WEB_ROOT . '/');
+            exit;
+        }
+    }
 
-    public function deleteAction($id)
+    public function showAction()
     {
-       $this->tareaModel->deleteTarea($id);
-        header('Location: /');
+        $id = $this->_getParam('id');
+        $this->view->tarea = $this->_model->fetchOneTarea($id);
+    }
+
+    public function updateAction()
+    {
+        if ($this->getRequest()->isPost()) {
+            $data = $this->getRequest()->getAllParams();
+
+            if (isset($data['hora_inicio']) && !$this->isValidDate($data['hora_inicio'])) {
+                $data['hora_inicio'] = null;
+            }
+    
+            if (isset($data['hora_fin']) && !$this->isValidDate($data['hora_fin'])) {
+                $data['hora_fin'] = null;
+            }
+            
+            $this->_model->saveTarea($data);
+            header('Location: ' . WEB_ROOT . '/');
+        } else {
+            $id = $this->_getParam('id');
+            $this->view->tarea = $this->_model->fetchOneTarea($id);
+        }
+    }
+
+    public function deleteAction()
+    {
+        $id = $this->_getParam('id');
+        $this->_model->deleteTarea($id);
+        header('Location: ' . WEB_ROOT . '/');
+    }
+
+    private function isValidDate($date)
+    {
+        return $date && strtotime($date) !== false;
     }
 }
+
 ?>

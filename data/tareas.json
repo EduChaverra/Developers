@@ -1,0 +1,11 @@
+[
+    {
+        "id": "1",
+        "titulo": "aaa",
+        "descripcion": "aaa",
+        "estado": "completada",
+        "hora_inicio": "2024-07-03T12:45",
+        "hora_fin": "2024-07-03T13:45",
+        "usuario": "aaa"
+    }
+]

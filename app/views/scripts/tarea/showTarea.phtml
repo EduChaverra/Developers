@@ -1,17 +1,20 @@
-<div class="rounded-lg shadow-lg p-4 mb-4 inline-block border border-gray-400">
-    <h3 class='text-lg'> <?= $tarea->titulo;?> </h3>
-    <p class="text-md text-gray-600"> <?= $tarea->descripcion;?> </p> 
-    <p class="text-md text-gray-600"> <?= $tarea->estado; ?> </p>
-    <p class="text-md text-gray-600"> <?= $tarea->hora_inicio; ?> </p>
-    <p class="text-md text-gray-600"> <?= $tarea->hora_fin; ?> </p>
-    <p class="text-md text-gray-600"> <?= $tarea->usuario; ?> </p>
-    <div class='flex space-x-2 mt-2'>
-        <a href="show/<?= $tarea->id ?>">
-            <button class='bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600'>Editar</button>
-        </a>
-        <button class='bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600' onclick='confirmDelete(<?= $tarea->id ?>)'>Eliminar</button>
+
+    <div class="rounded-lg shadow-lg p-4 mb-4 border border-gray-400">
+        <h3 class='text-lg'> <?= $tarea->titulo;?> </h3>
+        <p class="text-md text-gray-600"> <?= $tarea->descripcion;?> </p> 
+        <p class="text-md text-gray-600"> <?= $tarea->estado; ?> </p>
+        <p class="text-md text-gray-600"> <?= $tarea->hora_inicio; ?> </p>
+        <p class="text-md text-gray-600"> <?= $tarea->hora_fin; ?> </p>
+        <p class="text-md text-gray-600"> <?= $tarea->usuario; ?> </p>
+        <div class='flex mt-2 flex-col sm:flex-row md:space-x-2 space-y-2 md:space-y-0'>
+            <a href="show/<?= $tarea->id ?>">
+                <button class='bg-yellow-500 text-white text-md px-4 py-2 rounded hover:bg-yellow-600 w-full md:w-auto'>Editar</button>
+            </a>
+            <button class='bg-red-500 text-white text-md px-4 py-2 rounded hover:bg-red-600 w-full md:w-auto' onclick='confirmDelete(<?= $tarea->id ?>)'>
+                Eliminar
+            </button>
+        </div>
     </div>
-</div>
 
 <script>
     async function confirmDelete(id) {
